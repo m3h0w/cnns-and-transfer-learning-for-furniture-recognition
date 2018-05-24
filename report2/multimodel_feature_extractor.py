@@ -102,7 +102,7 @@ def _extract_features(pickle_name, model, files_path):
 #   - test: images
 #   - train: class_folders: images
 #   - valid: class_folders: images
-def extract_features_main(mode, model, data_path):
+def extract_features_main(mode, model, data_path, max_label=None):
     
     # data_path = '/furniture-data/' - absolute path for the ubuntu VM
     data_path = data_path
@@ -116,7 +116,9 @@ def extract_features_main(mode, model, data_path):
         _extract_features(pickle_name, model, files_path)
         return
 
-    for batch_i in range(1,129):
+    if not max_label:
+        max_label = 129
+    for batch_i in range(1,max_label+1):
         pickle_name = pickle_name_core + '_' + str(batch_i) + '.pkl'
         files_path = data_path + '/' + mode + "/" + str(batch_i) + "/*"
         print("Extracting features for: ", mode, batch_i)
@@ -129,9 +131,13 @@ if __name__ == '__main__':
 
     model_name = sys.argv[1]  
     data_path = sys.argv[2]
+    if(len(sys.argv) < 4):
+        max_label = None
+    else:
+        max_label = int(sys.argv[3])
 
     model = get_feature_extraction_model(model_name)
 
-    extract_features_main('valid', model, data_path)
-    extract_features_main('train', model, data_path)
+    extract_features_main('valid', model, data_path, max_label)
+    extract_features_main('train', model, data_path, max_label)
     extract_features_main('test', model, data_path)
