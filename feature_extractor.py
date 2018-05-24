@@ -4,7 +4,7 @@ from joblib import Parallel, delayed
 import concurrent.futures
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-from parallel import parallel_process
+# from parallel import parallel_process
 import time
 import glob, os, sys
 import pickle
@@ -56,8 +56,8 @@ if __name__ == '__main__':
     else:
         mode = sys.argv[1]
 
-    data_path = '/furniture-data/'
-    pickle_name_core = data_path + 'features/cnn_features_'+mode
+    data_path = './data/'
+    pickle_name_core = data_path + 'features3/cnn_features_'+mode
 
     if mode == 'test':
         pickle_name = pickle_name_core + '.pkl'

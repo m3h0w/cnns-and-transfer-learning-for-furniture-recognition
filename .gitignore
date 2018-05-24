@@ -105,7 +105,13 @@ pas.txt
 data/
 data
 .data/
+report2/data/
+report2/data_test/
 validation.json
 train.json
 test.json
 *.pkl
+*.jpg
+*.csv
+*.h5
+*.jpeg
