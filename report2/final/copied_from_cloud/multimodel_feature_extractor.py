@@ -106,8 +106,9 @@ def extract_features_main(mode, model, data_path, max_label=None):
     
     # data_path = '/furniture-data/' - absolute path for the ubuntu VM
     data_path = data_path
-    pickle_name_core = data_path + '/features_' + model_name + '/cnn_features_' + mode
-    call(['mkdir', '-p', data_path + '/' + pickle_name_core.split('/')[-2]])
+    user_path = '/home/1nnuser/'
+    pickle_name_core = user_path + data_path + '/features_' + model_name + '/cnn_features_' + mode
+    call(['sudo', 'mkdir', '-p', data_path + '/' + pickle_name_core.split('/')[-2]])
 
     if mode == 'test':
         pickle_name = pickle_name_core + '.pkl'
@@ -129,14 +130,12 @@ def extract_features_main(mode, model, data_path, max_label=None):
 if __name__ == '__main__':
     models = create_models_dictionary()
 
-    model_name = sys.argv[1]
+    model_name = sys.argv[1]  
     data_path = sys.argv[2]
-    mode = sys.argv[3]
-    
-    if(len(sys.argv) < 5):
+    if(len(sys.argv) < 4):
         max_label = None
     else:
-        max_label = int(sys.argv[4])
+        max_label = int(sys.argv[3])
 
     model = get_feature_extraction_model(model_name)
 
