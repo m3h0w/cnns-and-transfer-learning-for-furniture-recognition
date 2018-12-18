@@ -1,2 +1,4 @@
 # imaterialist_kaggle_competition
-LSDA2018 group work on iMaterialist image recognition competitions hosted on Kaggle.
+Group work on iMaterialist image recognition competitions hosted on Kaggle for Large Scale Data Analysis course at University of Copenhagen.
+
+The notebooks show examples of classification being made on top of pre-extracted bottleneck features from an ImageNet-pretrained model.
